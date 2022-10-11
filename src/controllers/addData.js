@@ -2,12 +2,12 @@ const { randomUUID } = require("crypto");
 const db = require("../config/db")
 module.exports = (app) => {
 app.post("/add", (req, res) => {
-    const {name, opinion} = req.body
+    const {name, opinion, status} = req.body
     const uid = randomUUID();
   
-    const query = "INSERT INTO `event_ranking`(`uid`, `name`, `opinion`) VALUES (?,?,?)"
+    const query = "INSERT INTO `event_ranking`(`uid`, `name`, `opinion`, `status`) VALUES (?,?,?,?)"
   
-    return db.query(query, [uid, name, opinion], (error) => {
+    return db.query(query, [uid, name, opinion, status], (error) => {
       if (error) {
         console.log(error);
         return res.status(500).json({
@@ -19,6 +19,7 @@ app.post("/add", (req, res) => {
         res.send({
           error: false,
           message: "ok",
+          id: uid
         });
       }
     })

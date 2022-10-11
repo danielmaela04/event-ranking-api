@@ -2,7 +2,7 @@ const db = require("../config/db");
 
 function getData(app) {
     app.get("/rank", (req, res) => {
-        const query = `SELECT * FROM event_ranking`
+        const query = `SELECT * FROM event_ranking ORDER BY uid DESC`
       
         db.query(query, (err, data) => {
           if (err) {
@@ -14,7 +14,7 @@ function getData(app) {
       })
 
       app.get("/rankings", (req, res) => {
-        const query = `SELECT count(*) FROM event_ranking`
+        const query = `SELECT count(*) AS totalRankings FROM event_ranking`
 
         db.query(query, (error, data) =>{
           if(error) {
@@ -26,6 +26,40 @@ function getData(app) {
             })
           } else {
             res.status(200).send(data);
+          }
+        })
+      })
+
+      app.get("/likes", (req, res) => {
+        const query = `SELECT count(*) AS totalLike FROM event_ranking WHERE status = 'Like'`
+
+        db.query(query, (error, data) => {
+          if(error) {
+            res.status(200).send({
+              error: true,
+              message: "Erro interno do servidor",
+              code: 200
+            })
+            console.log(error);
+          } else {
+            res.status(200).send(data)
+          }
+        })
+      })
+
+      app.get("/deslikes", (req, res) => {
+        const query = `SELECT count(*) AS totalDeslike FROM event_ranking WHERE status = 'Deslike'`
+
+        db.query(query, (error, data) => {
+          if(error) {
+            res.status(200).send({
+              error: true,
+              message: "Erro interno do servidor",
+              code: 200
+            })
+            console.log(error);
+          } else {
+            res.status(200).send(data)
           }
         })
       })

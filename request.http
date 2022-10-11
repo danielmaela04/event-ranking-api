@@ -2,8 +2,9 @@ POST http://localhost:3333/add HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Elon Musk",
-    "opinion": "Educa Moçambique Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam sit beatae ratione expedita. Iure iusto eligendi suscipit natus alias excepturi sint neque maxime repellendus, quas quia animi enim? Laboriosam. Lorem ipsum dolor sit amet consect"
+    "name": "Test Testando",
+    "opinion": "Educa Moçambique Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam sit beatae ratione expedita. Iure iusto eligendi suscipit natus alias excepturi sint neque maxime repellendus, quas quia animi enim? Laboriosam. Lorem ipsum dolor sit amet consect",
+    "status": "Deslike"
 }
 
 ###
